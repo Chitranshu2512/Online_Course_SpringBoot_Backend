@@ -1,12 +1,11 @@
 package com.cg.springbootmicroservice2purchase.service;
 
-import java.util.List;
-
 import com.cg.springbootmicroservice2purchase.model.Purchase;
 
-public interface PurchaseService
-{
-    Purchase savePurchase(Purchase purchase);
+import java.util.List;
+
+public interface PurchaseService {
+    Purchase processSuccessfulPayment(Long userId, Long courseId, String title, Double price);
 
     List<Purchase> findAllPurchasesOfUser(Long userId);
 }

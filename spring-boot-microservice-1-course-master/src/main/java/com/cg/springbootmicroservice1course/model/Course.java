@@ -25,6 +25,7 @@ public class Course
 
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
- 
-}
 
+    @Column(name = "thumbnail_url", length = 300)
+    private String thumbnailUrl;  
+}
