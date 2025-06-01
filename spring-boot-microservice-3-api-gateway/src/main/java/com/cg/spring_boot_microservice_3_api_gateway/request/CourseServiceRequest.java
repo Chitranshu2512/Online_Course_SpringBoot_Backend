@@ -8,21 +8,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
-@FeignClient(value = "course-service"//Name of course-service application
-		, path = "/api/course"//Pre-path for course-service
-//		,url = "${course.service.url}"
-		,configuration = FeignConfiguration.class
+@FeignClient(
+    value = "course-service",
+    path = "/api/course",
+    configuration = FeignConfiguration.class
 )
+public interface CourseServiceRequest {
 
-public interface CourseServiceRequest
-{
-	@PostMapping //api/course
-	Object saveCourse(@RequestBody Object requestBody);
+	@PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	Object saveCourse(
+	    @RequestPart("title") String title,
+	    @RequestPart("subtitle") String subtitle,
+	    @RequestPart("price") Double price,
+	    @RequestPart("thumbnail") MultipartFile thumbnail
+	);
 
-	@DeleteMapping("{courseId}")  //api/course/{courseId}
-	void deleteCourse(@PathVariable("courseId") Long courseId);
 
-	@GetMapping  //api/course
-	List<Object> getAllCourses();
+    @DeleteMapping("{courseId}")
+    void deleteCourse(@PathVariable("courseId") Long courseId);
+
+    @GetMapping
+    List<Object> getAllCourses();
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.spring_boot_microservice_3_api_gateway.exception.UnauthorizedAccessException;
 import com.cg.spring_boot_microservice_3_api_gateway.model.Role;
 import com.cg.spring_boot_microservice_3_api_gateway.security.UserPrincipal;
 import com.cg.spring_boot_microservice_3_api_gateway.service.UserService;

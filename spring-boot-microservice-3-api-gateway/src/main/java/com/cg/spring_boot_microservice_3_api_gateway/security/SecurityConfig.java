@@ -43,8 +43,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/authentication/**").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/gateway/course").permitAll()
-//                        .requestMatchers("/gateway/course/**").hasRole(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.GET, "/gateway/course").permitAll()
+                        .requestMatchers("/gateway/course/**").hasRole(Role.ADMIN.name())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
